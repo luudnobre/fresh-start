@@ -1,11 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lulu Changing</title>
+    <style>
+        body {
+            background: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .top-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .motivational {
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .emojis {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .lud {
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 80px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: purple;
+            color: white;
+            cursor: pointer;
+        }
+        .solution {
+            margin-top: 20px;
+            padding: 10px;
+            background: #333;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f9e0.svg">
 </head>
 <body>
-    <h1> Meu recomeço no GitHub</h1>
+    <div class="top-bar">
+        <span class="motivational" onclick="changeMotivation()">Clique para motivação</span>
+        <span class="emojis" onclick="changeEmoji()">💡</span>
+        <span class="lud">Lud Creating Life.</span>
+    </div>
+    
+    <div class="container">
+        <input type="text" id="problem" placeholder="Qual o problema?">
+        <input type="text" id="feeling" placeholder="Qual o sentimento?">
+        <textarea id="solution" placeholder="Possível solução..."></textarea>
+        <button onclick="generateSolution()">Gerar Solução</button>
+        <div class="solution" id="solutionBox"></div>
+    </div>
+    
+    <div class="footer">
+        <a href="https://github.com/luudnobre" target="_blank">DEVELOPED BY LUD 👩🏼‍💻</a>
+    </div>
+
+    <script>
+        const motivations = [
+            "Você é capaz!", "Cada passo conta!", "Respire fundo e siga!", "Confie no processo!", "Seu potencial é incrível!",
+            "Grandes coisas virão!", "Não desista!", "Pequenos avanços são avanços!", "Seu esforço vale a pena!", "Mantenha o foco!"
+        ];
+
+        function changeMotivation() {
+            const randomIndex = Math.floor(Math.random() * motivations.length);
+            document.querySelector('.motivational').innerText = motivations[randomIndex];
+        }
+
+        function changeEmoji() {
+            const emojis = ['🔥', '💡', '✨', '🌟', '🚀', '🎯', '💭', '🧠', '🎶', '⚡'];
+            const randomIndex = Math.floor(Math.random() * emojis.length);
+            document.querySelector('.emojis').innerText = emojis[randomIndex];
+        }
+
+        function generateSolution() {
+            let problem = document.getElementById("problem").value;
+            let feeling = document.getElementById("feeling").value;
+            let solutionBox = document.getElementById("solutionBox");
+            
+            if (problem.trim() === "" || feeling.trim() === "") {
+                solutionBox.innerText = "Preencha os campos corretamente!";
+                return;
+            }
+            
+            let solutions = [
+                "Tente escrever sobre o problema para enxergar melhor a solução.",
+                "Respire fundo e tente olhar para isso de um ângulo diferente.",
+                "Converse com alguém de confiança e peça uma nova perspectiva.",
+                "Separe o problema em partes menores e resolva aos poucos.",
+                "A solução pode estar na simplicidade. Não complique!"
+            ];
+            
+            const randomSolution = solutions[Math.floor(Math.random() * solutions.length)];
+            solutionBox.innerHTML = `<strong>Problema:</strong> ${problem} <br>
+                                     <strong>Sentimento:</strong> ${feeling} <br>
+                                     <strong>Solução:</strong> ${randomSolution}`;
+        }
+    </script>
 </body>
 </html>
